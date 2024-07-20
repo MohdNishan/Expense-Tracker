@@ -17,6 +17,7 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -139,20 +140,20 @@ export function DataTableDemo() {
       ),
     },
     {
-      accessorKey: "invoicefile",
+      accessorKey: "invoiceFile",
       header: "Invoice File",
       cell: ({ row }) => {
-        const fileUrl = row.getValue("invoicefile");
+        const fileUrl = row.getValue("invoiceFile");
         return (
           <div className="capitalize underline text-blue-600">
             {fileUrl ? (
-              <a
-                href={fileUrl.startsWith('http') ? fileUrl : `http://${fileUrl}`}
+              <Link
+                href={ `${fileUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 View File
-              </a>
+              </Link>
             ) : (
               <span>No file</span>
             )}
