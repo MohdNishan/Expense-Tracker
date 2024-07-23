@@ -16,7 +16,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";  
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -148,7 +148,7 @@ export function DataTableDemo() {
           <div className="capitalize underline text-blue-600">
             {fileUrl ? (
               <Link
-                href={ `${fileUrl}`}
+                href={`${fileUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -318,7 +318,7 @@ export function DataTableDemo() {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
+                  No Expenses.
                 </TableCell>
               </TableRow>
             )}
