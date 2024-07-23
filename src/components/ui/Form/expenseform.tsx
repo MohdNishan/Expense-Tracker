@@ -15,7 +15,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from "../../../../firebaseConfig";
 
 export function AddExpense() {
-  const [date, setDate] = useState<Date | null>(null);
+  const [date, setDate] = useState<Date | undefined>(undefined);
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [paidby, setPaidby] = useState('');
