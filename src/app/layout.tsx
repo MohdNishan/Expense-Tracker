@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   description: "A comprehensive web application for managing and tracking company expenses",
   keywords: "expense tracking, company expenses, finance management",
   openGraph: {
-    type: "website",
     url: "web-app-psi-eight.vercel.app",
     title: "My Web App",
     description: "A comprehensive web application for managing and tracking company expenses",
