@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   keywords: "expense tracking, company expenses, finance management",
   openGraph: {
     type: "website",
-    url: "web-app-psi-eight.vercel.app", // Replace with your website URL
+    url: "web-app-psi-eight.vercel.app",
     title: "My Web App",
     description: "A comprehensive web application for managing and tracking company expenses",
     images: [
       {
-        url: "web-app-psi-eight.vercel.app/logo.png", // Replace with your OG image URL
+        url: "web-app-psi-eight.vercel.app/logo.png", 
         width: 800,
         height: 600,
         alt: "My Web App",
