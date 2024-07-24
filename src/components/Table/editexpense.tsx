@@ -1,63 +1,32 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { useState, ChangeEvent } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { format, isAfter } from "date-fns";
+import { useState } from "react";
+import { Button } from "@/components/ui/shadcn components/button";
+import { Input } from "@/components/ui/shadcn components/input";
+import { Label } from "@/components/ui/shadcn components/label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/shadcn components/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/shadcn components/select";
+import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Calendar } from "@/components/ui/calendar";
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from "../../../../firebaseConfig";
+import { Calendar } from "@/components/ui/shadcn components/calendar";
 
-export function AddExpense() {
-  const [date, setDate] = useState<Date | undefined>(undefined);
+export function EditExpense() {
+  const [date, setDate] = useState<Date>();
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [paidby, setPaidby] = useState('');
   const [paidto, setPaidto] = useState('');
   const [invoiceFile, setInvoiceFile] = useState<File | null>(null);
-  const [invoiceFileUrl, setInvoiceFileUrl] = useState<string | null>(null);
   const [amount, setAmount] = useState<number | ''>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [created, setCreated] = useState<string>('');
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const router = useRouter();
-
-  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      setInvoiceFile(file);
-
-      setUploading(true);
-      const storageRef = ref(storage, `invoice/${file.name}`);
-
-      try {
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
-        setInvoiceFileUrl(url);
-        console.log("File uploaded");
-      } catch (error) {
-        console.error('Error uploading', error);
-      } finally {
-        setUploading(false);
-      }
-    }
-  };
 
   const handleSubmit = async () => {
     setErrorMessage('');
     setCreated('');
-
-    if (date && isAfter(date, new Date())) {
-      setErrorMessage('Cannot add future expenses');
-      return;
-    }
 
     const formData = new FormData();
     formData.append('category', category);
@@ -65,7 +34,7 @@ export function AddExpense() {
     formData.append('paidby', paidby);
     formData.append('paidto', paidto);
     formData.append('date', date ? date.toISOString() : '');
-    if (invoiceFileUrl) formData.append('invoiceFile', invoiceFileUrl);
+    if (invoiceFile) formData.append('invoiceFile', invoiceFile);
     formData.append('amount', amount.toString());
 
     try {
@@ -82,7 +51,6 @@ export function AddExpense() {
 
       console.log(data);
       setCreated('Expense added successfully');
-      setIsPopoverOpen(false);
       router.push('/');
     } catch (error) {
       console.error('Error adding expense:', error);
@@ -91,9 +59,9 @@ export function AddExpense() {
   };
 
   return (
-    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+    <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" className=" mt-3" onClick={() => setIsPopoverOpen(true)}>+</Button>
+        <Button variant="outline" className="ml-3">+</Button>
       </PopoverTrigger>
       <PopoverContent className="w-80">
         <div className="grid gap-4">
@@ -116,9 +84,9 @@ export function AddExpense() {
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Ejas Muhammed">Ejas Muhammed</SelectItem>
-                  <SelectItem value="Muhammed Nishan">Muhammed Nishan</SelectItem>
-                  <SelectItem value="Bytsolv">Bytsolv</SelectItem>
+                  <SelectItem value="A">A</SelectItem>
+                  <SelectItem value="B">B</SelectItem>
+                  <SelectItem value="C">C</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -142,25 +110,26 @@ export function AddExpense() {
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="invoiceFile">Invoice File</Label>
-              <Input id="invoiceFile" type="file" className="col-span-2 h-8 shadow-md" onChange={handleFileChange} />
+              <Input id="invoiceFile" type="file" className="col-span-2 h-8 shadow-md" onChange={(e) => setInvoiceFile(e.target.files ? e.target.files[0] : null)} />
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="amount">Amount</Label>
               <Input id="amount" className="col-span-2 h-8 shadow-md" type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
             </div>
-            <Button variant="outline" className="shadow-lg" onClick={handleSubmit} disabled={uploading}>Submit</Button>
+            <Button variant="outline" className="shadow-lg" onClick={handleSubmit}>Submit</Button>
+
           </div>
         </div>
         {errorMessage && (
-          <div className="text-red-500 text-sm mt-2 col-span-3">
-            {errorMessage}
-          </div>
-        )}
-        {created && (
-          <div className="text-green-500 text-sm mt-2 col-span-3">
-            {created}
-          </div>
-        )}
+              <div className="text-red-500 text-sm mt-2 col-span-3">
+                {errorMessage}
+              </div>
+            )}
+            {created && (
+              <div className="text-green-500 text-sm mt-2 col-span-3">
+                {created}
+              </div>
+            )}
       </PopoverContent>
     </Popover>
   );

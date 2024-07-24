@@ -1,5 +1,6 @@
-import { AddExpense } from "@/components/ui/Form/expenseform";
-import { DataTableDemo } from "@/components/ui/Table/expensetable";
+import { AddExpense } from "@/components/Form/expenseform";
+import TaskPage from "@/components/Table/expensetable";
+import { DataTableDemo } from "@/components/Table/expensetable1";
 
 export default async function Home() {
   return (
@@ -7,7 +8,8 @@ export default async function Home() {
       <div className="-mt-10">
         <img src="/logo.png"  width={55} height={55} />
       </div>
-      <DataTableDemo/>
+      <TaskPage/>
+      {/* <DataTableDemo/> */}
       <AddExpense/>
     </section>
   );

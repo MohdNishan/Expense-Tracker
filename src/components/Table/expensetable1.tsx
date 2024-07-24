@@ -62,7 +62,7 @@ export function DataTableDemo() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/expenses/table");
+        const response = await fetch("/api/expenses/table",{cache : "no-cache"});
         const expensesData = await response.json();
         setData(expensesData);
         console.log(expensesData);
