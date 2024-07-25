@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://web-app-psi-eight.vercel.app/logo.png", 
+        url: "https://2d30-152-58-219-162.ngrok-free.app/logo.png", 
         width: 800,
         height: 600,
         alt: "Expense Tracker",
@@ -40,7 +40,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <SignedIn>
             <div className="mt-1 flex justify-end mr-5 w-full pr-5 h-14 container"> 
-            <UserButton showName/>
             </div>
           </SignedIn>
           <SignedOut>

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"; 
 import { format, isAfter } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -93,7 +93,9 @@ export function AddExpense() {
   return (
     <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline" className=" mt-3" onClick={() => setIsPopoverOpen(true)}>+</Button>
+        <div className="w-full flex items-end justify-end">
+          <Button variant="outline" className=" " onClick={() => setIsPopoverOpen(true)}>+</Button>
+        </div>
       </PopoverTrigger>
       <PopoverContent className="w-80">
         <div className="grid gap-4">
