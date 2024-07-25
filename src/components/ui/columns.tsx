@@ -40,7 +40,7 @@ export const columns: ColumnDef<Task>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Date" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("date")}</div>,
+    cell: ({ row }) => <div className="w-[80px] ">{row.getValue("date")}</div>,
     enableSorting: false,
     enableHiding: false,
   },
