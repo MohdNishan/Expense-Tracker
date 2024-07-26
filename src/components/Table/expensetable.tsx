@@ -1,7 +1,6 @@
 import { promises as fs } from "fs"
 import path from "path"
 import { Metadata } from "next"
-import Image from "next/image"
 import { z } from "zod"
 
 import { columns } from "@/components/ui/columns"
@@ -12,10 +11,6 @@ import { UserButton } from "@clerk/nextjs"
 import { AddExpense } from "../Form/expenseform"
 import { DrawerDialogDemo } from "../Form/expenseform1"
 
-export const metadata: Metadata = {
-  title: "Tasks",
-  description: "A task and issue tracker build using Tanstack Table.",
-}
 
 async function getTasks() {
   const data = await fs.readFile(

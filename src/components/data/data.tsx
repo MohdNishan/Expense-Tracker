@@ -12,60 +12,40 @@ import {
 export const labels = [
   {
     value: "bug",
-    label: "Bug",
+    label: "Income",
   },
   {
     value: "feature",
-    label: "Feature",
+    label: "Expense",
   },
-  {
-    value: "documentation",
-    label: "Documentation",
-  },
+//   {
+//     value: "documentation",
+//     label: "Documentation",
+//   },
 ]
 
 export const statuses = [
   {
-    value: "backlog",
-    label: "Backlog",
-    icon: QuestionMarkCircledIcon,
+    value: "Ejas Muhammed",
+    label: "Ejas Muhammed",
   },
   {
-    value: "todo",
-    label: "Todo",
-    icon: CircleIcon,
+    value: "Muhammed Nishan",
+    label: "Muhammed Nishan",
   },
   {
-    value: "in progress",
-    label: "In Progress",
-    icon: StopwatchIcon,
-  },
-  {
-    value: "done",
-    label: "Done",
-    icon: CheckCircledIcon,
-  },
-  {
-    value: "canceled",
-    label: "Canceled",
-    icon: CrossCircledIcon,
-  },
+    value: "Bytsolv",
+    label: "Bytsolv",
+  }
 ]
 
 export const priorities = [
   {
-    label: "Low",
-    value: "low",
-    icon: ArrowDownIcon,
+      label: "Jio",
+      value: "low",
   },
   {
-    label: "Medium",
+    label: "Indigo Airlines",
     value: "medium",
-    icon: ArrowRightIcon,
-  },
-  {
-    label: "High",
-    value: "high",
-    icon: ArrowUpIcon,
-  },
+  }
 ]

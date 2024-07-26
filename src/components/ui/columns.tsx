@@ -9,6 +9,7 @@ import { labels, priorities, statuses } from "../data/data"
 import { Task } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
+import { ImageIcon } from "@radix-ui/react-icons"
 
 export const columns: ColumnDef<Task>[] = [
   {
@@ -41,23 +42,17 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="Date" />
     ),
     cell: ({ row }) => <div className="w-[80px] ">{row.getValue("date")}</div>,
-    enableSorting: false,
-    enableHiding: false,
+
   },
   {
-    accessorKey: "category",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Category" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("category")}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    accessorKey: "Category",
+    
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue("Category")}</div>,
+
   },
   {
-    accessorKey: "description",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Description" />
-    ),
+    accessorKey: "Description",
+    
     cell: ({ row }) => {
       const label = labels.find((label) => label.value === row.original.label)
 
@@ -65,20 +60,18 @@ export const columns: ColumnDef<Task>[] = [
         <div className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("description")}
+            {row.getValue("Description")}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "status",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Paid By" />
-    ),
+    accessorKey: "Paidby",
+
     cell: ({ row }) => {
       const status = statuses.find(
-        (status) => status.value === row.getValue("status")
+        (status) => status.value === row.getValue("Paidby")
       )
 
       if (!status) {
@@ -87,9 +80,7 @@ export const columns: ColumnDef<Task>[] = [
 
       return (
         <div className="flex w-[100px] items-center">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          
           <span>{status.label}</span>
         </div>
       )
@@ -99,13 +90,11 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
-    accessorKey: "priority",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Paid To" />
-    ),
+    accessorKey: "Paidto",
+    
     cell: ({ row }) => {
       const priority = priorities.find(
-        (priority) => priority.value === row.getValue("priority")
+        (priority) => priority.value === row.getValue("Paidto")
       )
 
       if (!priority) {
@@ -114,9 +103,7 @@ export const columns: ColumnDef<Task>[] = [
 
       return (
         <div className="flex items-center">
-          {priority.icon && (
-            <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
+          
           <span>{priority.label}</span>
         </div>
       )
@@ -126,22 +113,18 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
-    accessorKey: "invoicefile",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Invoice File" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("invoicefile")}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    accessorKey: "Invoicefile",
+    
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue("Invoicefile")}
+    <a href="" className="text-blue-700 underline ml-3 text-sm">View File</a></div>,
+
   },
   {
     accessorKey: "amount",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Amount" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("amount")}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    cell: ({ row }) => <div className="w-[80px] font-semibold">₹ {row.getValue("amount")}</div>,
   },
   {
     id: "actions",

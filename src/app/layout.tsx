@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://2d30-152-58-219-162.ngrok-free.app/logo.png", 
+        url: "https://2f31-152-58-219-162.ngrok-free.app/logo.png", 
         width: 800,
         height: 600,
         alt: "Expense Tracker",

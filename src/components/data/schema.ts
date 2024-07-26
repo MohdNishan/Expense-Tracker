@@ -1,15 +1,14 @@
 
 import { z } from "zod"
 
-// We're keeping a simple non-relational schema here.
-// IRL, you will have a schema for your data models.
 export const taskSchema = z.object({
   date: z.string(),
-  category: z.string(),
-  description: z.string(),
-  status: z.string(),
+  Category: z.string(),
+  Description: z.string(),
+  Paidby: z.string(),
   label: z.string(),
-  priority: z.string(),
+  Paidto: z.string(),   
+  amount: z.string(),
 })
 
 export type Task = z.infer<typeof taskSchema>
